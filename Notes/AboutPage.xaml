@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Notes.AboutPage">
+    <VerticalStackLayout Spacing="10" Margin="10">
+        <HorizontalStackLayout Spacing="10">
+            <Image Source="dotnet_bot.png"
+                   SemanticProperties.Description="The dot net bot waving hello!"
+                   HeightRequest="64" />
+            <Label FontSize="22" FontAttributes="Bold" Text="Notes" VerticalOptions="End" />
+            <Label FontSize="22" Text="v1.0" VerticalOptions="End" />
+        </HorizontalStackLayout>
+
+        <Label Text="This app is written in XAML and C# with .NET MAUI." />
+        <Button Text="Learn more..." Clicked="LearnMore_Clicked" />
+    </VerticalStackLayout>
+</ContentPage>
+
+<!--ContentPage can only have one child element. Here, the single child 
+    element is a VerticalStackLayout, which arranges its children in a 
+    vertical stack.-->
+    <!--The VerticalStackLayout contains two children: a 
+    HorizontalStackLayout and a Label. The HorizontalStackLayout 
+    arranges its children in a horizontal stack and contains three 
+    children: an Image and two Labels. The Image displays an image of 
+    the .NET bot, while the Labels display the app name and version 
+    number. The second Label displays some additional information about 
+    the app, and the Button provides a way for users to learn more 
+    about the app by clicking it.
+ -->
+<!--HorizontalStackLayout operates the same as VerticalStackLayout 
+    except its children are arranged horizontally-->
+<!--Image display an image-->
+    
+<!--The file added to the project is actually dotnet_bot.svg. .NET 
+    MAUI converts Scalable Vector Graphics (SVG) files to Portable 
+    Network Graphic (PNG) files based on the target device. Therefore, 
+    when adding an SVG file to your .NET MAUI app project, it should 
+    be referenced from XAML or C# with a .png extension. The only 
+    reference to the SVG file should be in your project file.-->

@@ -1,0 +1,96 @@
+﻿#										   #
+# GENERAL VISUAL STUDIO & .NET				#
+#										   #
+
+# User-specific files
+*.user
+*.suo
+*.sln.docstates
+
+# Visual Studio temporary files, caches, and logs
+.vs/
+[Vv]s/
+*.userprefs
+*.ide/
+.idea/
+
+# Build results
+[Bb]in/
+[Oo]bj/
+[Rr]elease/
+[Dd]ebug/
+
+# MSTest & NUnit test results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+*.[Tt]log
+*.VisualState.xml
+TestResult.xml
+
+# Code coverage files
+*.coverage
+*.coveragexml
+
+# Publish files
+*.pubxml
+*.publish.xml
+*.pubxml.user
+/publish/
+
+# NuGet packages folder
+/packages/
+*.nupkg
+*.nuget.props
+*.nuget.targets
+
+# Dependency lock file (optional, some teams commit this)
+project.lock.json
+project.assets.json
+
+#										   #
+# .NET MAUI PLATFORM SPECIFICS			   #
+#										   #
+
+# These rules prevent platform-specific build artifacts from being committed.
+# The source code in these folders (like Info.plist or AndroidManifest.xml)
+# IS meant to be in source control, but the bin/ and obj/ subfolders are not.
+
+/Platforms/Android/bin/
+/Platforms/Android/obj/
+
+/Platforms/iOS/bin/
+/Platforms/iOS/obj/
+
+/Platforms/MacCatalyst/bin/
+/Platforms/MacCatalyst/obj/
+
+/Platforms/Windows/bin/
+/Platforms/Windows/obj/
+
+/Platforms/Tizen/bin/
+/Platforms/Tizen/obj/
+
+
+#										   #
+# OS & ENVIRONMENT SPECIFIC				#
+#										   #
+
+# Windows
+Thumbs.db
+ehthumbs.db
+[Dd]esktop.ini
+
+# macOS
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+#										   #
+# SECRETS & LOCAL CONFIGURATION			   #
+#										   #
+
+# It's a good practice to explicitly ignore common secret file patterns.
+# Store your secrets in a file like 'secrets.json' and ensure it's ignored.
+*.secrets.json
+appsettings.Development.json
