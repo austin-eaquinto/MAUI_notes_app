@@ -1,29 +1,56 @@
 namespace Notes.Views;
 
+[QueryProperty(nameof(ItemId), nameof(ItemId))]
 public partial class NotePage : ContentPage
 {
-    string _fileName = Path.Combine(FileSystem.AppDataDirectory, "notes.txt");  // full path to the file
+    public string ItemId
+    {
+        set { LoadNote(value); }
+    }
+
     public NotePage()
 	{
 		InitializeComponent();  // reads the XAML markup and
                                 // initializes all of the objects
                                 // declared in the XAML
 
-        if (File.Exists(_fileName)) // if the file exists
-            TextEditor.Text = File.ReadAllText(_fileName);  // read the file into the editor
+        string appDataPath = FileSystem.AppDataDirectory;                   // gets the path to the app's data directory
+        string randomFileName = $"{Path.GetRandomFileName()}.notes.txt";    // generates a random file name with .notes.txt extension
+
+        LoadNote(Path.Combine(appDataPath, randomFileName));                // loads the note from the file represented by the full path
     }
-    private void SaveButton_Clicked(object sender, EventArgs e) // writes the text in the editor control to the file represented by _fileName
+    private async void SaveButton_Clicked(object sender, EventArgs e)
     {
-        // Save the file.
-        File.WriteAllText(_fileName, TextEditor.Text);
+        if (BindingContext is Models.Note note)
+            File.WriteAllText(note.Filename, TextEditor.Text);
+
+        await Shell.Current.GoToAsync("..");
     }
 
-    private void DeleteButton_Clicked(object sender, EventArgs e)   // if the file represented by _filename variable exists delete the file
+    private async void DeleteButton_Clicked(object sender, EventArgs e)
     {
-        // Delete the file.
-        if (File.Exists(_fileName))
-            File.Delete(_fileName);
+        if (BindingContext is Models.Note note)
+        {
+            // Delete the file.
+            if (File.Exists(note.Filename))
+                File.Delete(note.Filename);
+        }
 
-        TextEditor.Text = string.Empty;
+        await Shell.Current.GoToAsync("..");
     }
+
+    private void LoadNote(string fileName)  // loads the note from the file represented by the full path
+    {
+        Models.Note noteModel = new Models.Note();              // creates a new instance of the Note class
+        noteModel.Filename = fileName;                          // sets the Filename property of the noteModel object to the fileName parameter
+
+        if (File.Exists(fileName))
+        {
+            noteModel.Date = File.GetCreationTime(fileName);    // sets the Date property of the noteModel object to the creation time of the file represented by the fileName parameter
+            noteModel.Text = File.ReadAllText(fileName);        // sets the Text property of the noteModel object to the text read from the file represented by the fileName parameter
+        }
+
+        BindingContext = noteModel;                             // sets the BindingContext property of the NotePage object to the noteModel object
+    }
+
 }
